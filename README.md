@@ -32,7 +32,7 @@ PaperMod is added as a submodule; do not copy theme files into the repo. Update 
 
 ## GitHub Pages (CI)
 
-The site deploys with **GitHub Actions** via `.github/workflows/build-and-deploy.yml` on every push to `main` (and manual `workflow_dispatch`). The workflow validates (`hugo config`, `hugo list all`), builds with `configure-pages` **base URL** for GitHub Pages, uploads `public/`, and deploys with `actions/deploy-pages`. If the default branch is not `main`, add it under `on.push.branches` in that file or rename the default branch to `main`.
+The site deploys with **GitHub Actions** via `.github/workflows/build-and-deploy.yml` on every push to `main` (and manual `workflow_dispatch`). The workflow validates (`hugo config`, `hugo list all` — successful `hugo config` is quiet in CI to keep logs readable), builds with `configure-pages` **base URL** for GitHub Pages, uploads `public/`, and deploys with `actions/deploy-pages`. If the default branch is not `main`, add it under `on.push.branches` in that file or rename the default branch to `main`.
 
 **One-time repository setup** (required for deploy to work):
 

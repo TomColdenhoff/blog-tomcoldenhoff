@@ -20,4 +20,3 @@ Thumbs.db
 !.env.example
 *.pem
 .cursor/
-_bmad-output
