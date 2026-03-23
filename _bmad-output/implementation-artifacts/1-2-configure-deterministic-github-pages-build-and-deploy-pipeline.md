@@ -1,6 +1,6 @@
 # Story 1.2: Configure Deterministic GitHub Pages Build and Deploy Pipeline
 
-Status: review
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -132,6 +132,7 @@ Composer (Cursor agent)
 - Implemented `.github/workflows/build-and-deploy.yml`: `main` + `workflow_dispatch`, submodule checkout, Hugo Extended 0.158.0, `configure-pages` + `--baseURL` for Pages URL, validate (`hugo config`, `hugo list all`) before build, `upload-pages-artifact` + `deploy-pages` with `needs: build`.
 - Documented one-time GitHub **Settings → Pages → Source: GitHub Actions** in `README.md`.
 - Regression: `hugo config`, `hugo list all`, and `hugo --gc --minify --baseURL <...>` succeed locally (no repo-level automated test runner for Actions YAML).
+- Post-review fixes applied (quiet `hugo config`, per-job permissions, build `::error`, `.gitignore`); story marked **done** after review acceptance.
 
 ### File List
 
@@ -142,4 +143,4 @@ Composer (Cursor agent)
 
 ---
 
-**Story completion status:** review — Implementation complete; awaiting code review
+**Story completion status:** done — Code review accepted; story closed

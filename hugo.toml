@@ -4,3 +4,44 @@ languageCode = 'en-us'
 title = 'Tom Coldenhoff'
 
 theme = 'PaperMod'
+
+# Production builds exclude drafts unless you pass -D / --buildDrafts (matches CI: hugo --gc --minify).
+[build]
+  buildDrafts = false
+
+# PaperMod home list uses site.Params.mainSections (see themes/PaperMod/layouts/_default/list.html).
+# Home intro copy: content/_index.md (title, description, body). We do not set homeInfoParams or profileMode.enabled
+# so the home page stays a post list with optional _index body — avoids duplicate hero blocks (Epic 3.1).
+[params]
+  mainSections = ['posts']
+
+# Primary nav — ux-design.md §3: Home, Posts, taxonomy entry points (labels align with docs/taxonomy-conventions.md), About.
+[[menu.main]]
+identifier = 'home'
+name = 'Home'
+url = '/'
+weight = 10
+
+[[menu.main]]
+identifier = 'posts'
+name = 'Posts'
+url = '/posts/'
+weight = 20
+
+[[menu.main]]
+identifier = 'categories'
+name = 'Categories'
+url = '/categories/'
+weight = 25
+
+[[menu.main]]
+identifier = 'tags'
+name = 'Tags'
+url = '/tags/'
+weight = 26
+
+[[menu.main]]
+identifier = 'about'
+name = 'About'
+url = '/about/'
+weight = 30
