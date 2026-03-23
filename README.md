@@ -6,13 +6,13 @@ Planning and BMAD artifacts live under `_bmad-output/` and `_bmad/`; they are se
 
 ## Prerequisites
 
-- **Hugo Extended** (Homebrew installs Extended by default). Confirmed version for this baseline:
+- **Hugo Extended** — baseline targets **0.158.0** or newer (any OS/CI). Install from [Hugo’s documentation](https://gohugo.io/installation/) for your platform; confirm the binary is Extended:
 
-  ```text
-  hugo v0.158.0+extended+withdeploy darwin/arm64 BuildDate=2026-03-16T17:42:04Z VendorInfo=Homebrew
+  ```bash
+  hugo version
   ```
 
-  Check locally: `hugo version`
+  The output must include `extended` (required for this theme and typical asset pipelines).
 
 - **Git** with submodule support (`git submodule update --init --recursive` after clone).
 

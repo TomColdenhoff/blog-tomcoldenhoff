@@ -1,5 +1,6 @@
-baseURL = 'https://example.org/'
+# Production URL; override for staging/preview if needed (e.g. GitHub Pages URL before custom domain).
+baseURL = 'https://tomcoldenhoff.com/'
 languageCode = 'en-us'
-title = 'My New Hugo Project'
+title = 'Tom Coldenhoff'
 
 theme = 'PaperMod'
