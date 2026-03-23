@@ -1,0 +1,73 @@
+# Deterministic Hugo build → GitHub Pages (Actions deployment).
+# Story 1.2 — validation and build run in `build`; deploy runs only after a successful artifact upload.
+
+name: build-and-deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.158.0"
+          extended: true
+
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Validate Hugo project
+        run: |
+          set -euo pipefail
+          if ! hugo config; then
+            echo "::error::Validate Hugo project — hugo config failed. Check hugo.toml, theme = 'PaperMod', and that themes/PaperMod is present (submodules: run git submodule update --init --recursive locally)."
+            exit 1
+          fi
+          if ! hugo list all > /dev/null; then
+            echo "::error::Validate Hugo project — hugo list all failed. Check content paths and frontmatter."
+            hugo list all
+            exit 1
+          fi
+          echo "Validate Hugo project — OK"
+
+      - name: Build site
+        env:
+          HUGO_ENVIRONMENT: production
+        run: hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
