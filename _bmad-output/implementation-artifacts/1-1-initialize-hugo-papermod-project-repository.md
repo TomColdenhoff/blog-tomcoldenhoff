@@ -1,6 +1,6 @@
 # Story 1.1: Initialize Hugo + PaperMod Project Repository
 
-Status: ready-for-dev
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -26,14 +26,14 @@ so that I can start publishing from a stable, architecture-aligned baseline.
 
 ## Tasks / Subtasks
 
-- [ ] Install/use **Hugo** (Extended recommended if your theme or pipeline expects it; match local and future CI). Confirm version in `README.md`. (AC: 1)
-- [ ] Initialize the Hugo site at the **repository root** (`tomcoldenhoff.com`), preserving existing non-site folders (`_bmad-output/`, `_bmad/`, `.cursor/`). Use the documented pattern: `hugo new site` with the appropriate option for a non-empty directory if required (e.g. force flag per current Hugo docs). (AC: 1)
-- [ ] Add PaperMod per architecture: **git submodule** at `themes/PaperMod` from `https://github.com/adityatelange/hugo-PaperMod.git` — do **not** copy-paste vendor files into the repo without submodule. (AC: 1)
-- [ ] Configure the active theme in root config (`hugo.toml` or `hugo.yaml`/`config/` as generated): `theme = 'PaperMod'` (or equivalent for chosen config format). Ensure `hugo server` and `hugo` build succeed. (AC: 1)
-- [ ] Ensure standard directories exist or are created as needed: `content/`, `layouts/` (for future overrides), `static/`, `themes/`, `archetypes/`, `assets/` if used. (AC: 1)
-- [ ] Add/update **`.gitignore`** so build output and local artifacts are not committed: at minimum `public/`, `resources/`, `.hugo_build.lock`, OS/editor junk; never commit secrets. (AC: 2)
-- [ ] If the repo is not yet a git repository, run `git init`; stage the Hugo baseline + submodule; create an **initial commit** with a clear message. If git already exists, commit the new site files in a dedicated commit. (AC: 2)
-- [ ] **Out of scope for this story:** GitHub Actions, custom domain, Cloudflare, CI validation scripts — those belong to later stories (Epic 1 Stories 1.2+). (AC: 1, 2)
+- [x] Install/use **Hugo** (Extended recommended if your theme or pipeline expects it; match local and future CI). Confirm version in `README.md`. (AC: 1)
+- [x] Initialize the Hugo site at the **repository root** (`tomcoldenhoff.com`), preserving existing non-site folders (`_bmad-output/`, `_bmad/`, `.cursor/`). Use the documented pattern: `hugo new site` with the appropriate option for a non-empty directory if required (e.g. force flag per current Hugo docs). (AC: 1)
+- [x] Add PaperMod per architecture: **git submodule** at `themes/PaperMod` from `https://github.com/adityatelange/hugo-PaperMod.git` — do **not** copy-paste vendor files into the repo without submodule. (AC: 1)
+- [x] Configure the active theme in root config (`hugo.toml` or `hugo.yaml`/`config/` as generated): `theme = 'PaperMod'` (or equivalent for chosen config format). Ensure `hugo server` and `hugo` build succeed. (AC: 1)
+- [x] Ensure standard directories exist or are created as needed: `content/`, `layouts/` (for future overrides), `static/`, `themes/`, `archetypes/`, `assets/` if used. (AC: 1)
+- [x] Add/update **`.gitignore`** so build output and local artifacts are not committed: at minimum `public/`, `resources/`, `.hugo_build.lock`, OS/editor junk; never commit secrets. (AC: 2)
+- [x] If the repo is not yet a git repository, run `git init`; stage the Hugo baseline + submodule; create an **initial commit** with a clear message. If git already exists, commit the new site files in a dedicated commit. (AC: 2)
+- [x] **Out of scope for this story:** GitHub Actions, custom domain, Cloudflare, CI validation scripts — those belong to later stories (Epic 1 Stories 1.2+). (AC: 1, 2)
 
 ## Dev Notes
 
@@ -89,16 +89,29 @@ so that I can start publishing from a stable, architecture-aligned baseline.
 
 ### Agent Model Used
 
-_To be filled by implementing agent._
+Composer (Cursor agent)
 
 ### Debug Log References
 
 ### Completion Notes List
 
+- Installed **Hugo Extended** via Homebrew (`hugo v0.158.0+extended+withdeploy`); version recorded in `README.md`.
+- Ran `hugo new site . --force --format toml` at repo root; preserved `_bmad-output/`, `_bmad/`, and left `.cursor/` untracked (local IDE).
+- Added `themes/PaperMod` as **git submodule** (`.gitmodules` + submodule commit at `themes/PaperMod`).
+- Set `theme = 'PaperMod'` in `hugo.toml`; `languageCode` used per Hugo defaults (replaced generated `locale` key).
+- Verified `hugo` build succeeds; `public/` and `resources/` ignored; no secrets committed.
+- Initial commit: `feat(hugo): initialize Hugo site with PaperMod submodule`.
+
 ### File List
 
-_To be filled by implementing agent._
+- `hugo.toml` — site config + active theme
+- `.gitignore` — Hugo build output, lock file, OS/editor noise, secret patterns
+- `README.md` — Hugo version and basic commands
+- `.gitmodules` — PaperMod submodule
+- `themes/PaperMod` — git submodule (vendor; do not edit for features)
+- `archetypes/default.md` — Hugo default archetype
+- `content/.gitkeep`, `layouts/.gitkeep`, `static/.gitkeep`, `assets/.gitkeep` — preserve empty baseline dirs in git
 
 ---
 
-**Story completion status:** ready-for-dev — Ultimate context engine analysis completed - comprehensive developer guide created
+**Story completion status:** done
