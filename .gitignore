@@ -1,0 +1,21 @@
+# Hugo
+/public/
+/resources/
+.hugo_build.lock
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Env and secrets (never commit)
+.env
+.env.*
+!.env.example
+*.pem
